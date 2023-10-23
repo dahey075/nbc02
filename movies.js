@@ -54,34 +54,68 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
 
     });
 
-    // //search상자, 버튼 위치 가져오기
-    // const searchInput = document.getElementById("searchInput");
-    // const searchBtn = document.getElementById("searchBtn");
+    //search상자, 버튼 위치 가져오기
+    const searchInput = document.getElementById("searchInput");
+    const searchBtn = document.getElementById("searchBtn");
 
-    // //검색 함수
-    // function search() {
+    //검색 함수
+    function search() {
+      // console.log("확인서치");
 
-    //   let scan = searchInput.value.toLowerCase();
-    //   console.log(scan.toLowerCase());
+      //searchInput 입력값을 소문자로 변환하고 변수 scan에 할당
+      let scan = searchInput.value.toLowerCase();
+      //빈 배열 array 선언
+      let array = []; 
 
-    //   console.log(movieData[0].title);
+      console.log(scan);
 
-    //   movieData.forEach(movie => {
-    //     let movieTitle = movie.title;
+      //newMovieCard 선언 후 표시할 위치 가져오기
+      const newMovieCard = document.getElementById("movieList");
+      //newBox 선언 후 div 생성
+      let newBox = document.createElement("div");
+      newBox.className = "box";
 
-    //   });
+      //movieList에 자식노드가 있으면 삭제 
+      while (movieList.firstChild) {
+        // console.log("확인삭제");
+        movieList.removeChild(movieList.firstChild);
+      }
 
-    // }
+      //scan값을 포함한 movieData.title 값 반복해서 찾기
+      for (let i = 0; i < 20; i++) {
+        if (movieData[i].title.toLowerCase().includes(scan)) {
 
-    // //검색버튼 클릭시 search 함수 호출
-    // searchBtn.addEventListener('click', () => {
-    //   search();
-    // })
+          array.push(movieData[i]); //찾으면 array에 넣기
+          console.log("array =>" + array);
+          //newBox 요소 생성
+          newBox.innerHTML = `
+              <a class="imge"><img src="https://image.tmdb.org/t/p/w200/${movieData[i].poster_path}"</a>
+              <h2>${movieData[i].title}</h2>
+              <div>${movieData[i].title}</div>
+              <div>${movieData[i].overview}</div>
+              <div>Rating : ${movieData[i].vote_average}</div>`;   
+
+
+          //찾은 영화 화면에 표시
+
+           newMovieCard.appendChild(newBox);
+         console.log("확인2");
+
+        }
+      }
+
+
+
+
+    }
+
+    //검색버튼 클릭시 search 함수 호출
+    searchBtn.addEventListener('click', () => {
+      // console.log("확인클릭");
+      search();
+    })
 
 
   })
 
   .catch(err => console.error(err));
-
-
-
