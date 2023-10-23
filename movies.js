@@ -18,6 +18,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
     let movieData = response["results"];
     console.log(movieData);
 
+
     //movieData를 movie(화살표함수)의 매개변수로 받고, foreach문을 통해 반복해서 호출
     movieData.forEach(movie => {
       //영화 카드 생성
@@ -58,15 +59,22 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
     // const searchBtn = document.getElementById("searchBtn");
 
     // //검색 함수
-    // function search(){
+    // function search() {
 
-    //   scan => searchInput.value;
+    //   let scan = searchInput.value.toLowerCase();
+    //   console.log(scan.toLowerCase());
 
-      
+    //   console.log(movieData[0].title);
+
+    //   movieData.forEach(movie => {
+    //     let movieTitle = movie.title;
+
+    //   });
+
     // }
 
     // //검색버튼 클릭시 search 함수 호출
-    // searchBtn.addEventListener('click',()=>{
+    // searchBtn.addEventListener('click', () => {
     //   search();
     // })
 
