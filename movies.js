@@ -65,7 +65,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
       //searchInput 입력값을 소문자로 변환하고 변수 scan에 할당
       let scan = searchInput.value.toLowerCase();
       //빈 배열 array 선언
-      let array = []; 
+      let array = [];
 
       console.log(scan);
 
@@ -77,7 +77,6 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
 
       //movieList에 자식노드가 있으면 삭제 
       while (movieList.firstChild) {
-        // console.log("확인삭제");
         movieList.removeChild(movieList.firstChild);
       }
 
@@ -87,19 +86,21 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
 
           array.push(movieData[i]); //찾으면 array에 넣기
           console.log("array =>" + array);
+
           //newBox 요소 생성
+          let newBox = document.createElement("div");
+          
           newBox.innerHTML = `
               <a class="imge"><img src="https://image.tmdb.org/t/p/w200/${movieData[i].poster_path}"</a>
               <h2>${movieData[i].title}</h2>
               <div>${movieData[i].title}</div>
               <div>${movieData[i].overview}</div>
-              <div>Rating : ${movieData[i].vote_average}</div>`;   
+              <div>Rating : ${movieData[i].vote_average}</div>`;
 
 
           //찾은 영화 화면에 표시
-
-           newMovieCard.appendChild(newBox);
-         console.log("확인2");
+          newMovieCard.appendChild(newBox);
+          console.log("확인2");
 
         }
       }
@@ -111,7 +112,6 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
 
     //검색버튼 클릭시 search 함수 호출
     searchBtn.addEventListener('click', () => {
-      // console.log("확인클릭");
       search();
     })
 
